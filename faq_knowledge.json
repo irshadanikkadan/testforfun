@@ -1,0 +1,20 @@
+{
+  "faq": [
+    {
+      "question": "What ages/grades do you accept?",
+      "answer": "We accept children from LKG to 9th grade. Placement depends on prior learning."
+    },
+    {
+      "question": "When are classes held?",
+      "answer": "We run a flexible 2-day week model with options on timings. Contact us for the current timetable."
+    },
+    {
+      "question": "How do I apply?",
+      "answer": "Fill out the registration form on the 'Registration' section. We'll contact you with next steps."
+    },
+    {
+      "question": "What curriculum do you follow?",
+      "answer": "We combine the British curriculum (Maths, Science, English) with Quran, Qaida and Arabic lessons."
+    }
+  ]
+}

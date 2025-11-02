@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - AL FALAH ONLINE</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .dashboard-container { max-width: 900px; margin: 40px auto; background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(55,181,122,0.12); padding: 2rem; }
+    h1 { color: #1f6b47; margin-bottom: 1.5rem; }
+    .submission-list { margin-top: 2rem; }
+    .submission-card { background: #f8fbf7; border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 1rem; border: 1px solid #e0e0e0; }
+    .submission-card strong { color: #37b57a; }
+    .empty { color: #888; text-align: center; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>Admin Dashboard</h1>
+    <div id="submissionList" class="submission-list"></div>
+  </div>
+  <script>
+    async function loadSubmissions() {
+      try {
+        const res = await fetch('/submissions.json');
+        const data = await res.json();
+        const list = document.getElementById('submissionList');
+        if (!data.length) {
+          list.innerHTML = '<div class="empty">No submissions yet.</div>';
+          return;
+        }
+        list.innerHTML = data.map(sub => `
+          <div class="submission-card">
+            <strong>Student:</strong> ${sub.studentName}<br>
+            <strong>Parent:</strong> ${sub.parentName}<br>
+            <strong>Email:</strong> ${sub.email}<br>
+            <strong>Phone:</strong> ${sub.phone}<br>
+            <strong>Grade:</strong> ${sub.grade}<br>
+            <strong>Message:</strong> ${sub.message}<br>
+            <small>Submitted: ${sub.timestamp}</small>
+          </div>
+        `).join('');
+      } catch (err) {
+        document.getElementById('submissionList').innerHTML = '<div class="empty">Error loading submissions.</div>';
+      }
+    }
+    loadSubmissions();
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin Dashboard - AL FALAH ONLINE</title>
+    <style>
+      body { font-family: 'Segoe UI', system-ui, Arial; background: #f6fff8; color: #123; padding: 40px; }
+      .card { max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 12px 40px rgba(10,30,10,0.06); }
+      h1 { color: #1f6b47; }
+      .controls { display:flex; gap:12px; margin-top:16px; }
+      .btn { padding:10px 14px; border-radius:8px; border:1px solid #1f6b47; background:#37b57a; color:white; text-decoration:none; }
+      .btn.secondary { background:transparent; color:#1f6b47; }
+      small { color:#555; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Admin Dashboard</h1>
+      <p>Welcome — this is a lightweight demo admin page. For production use, implement secure authentication and server-side protections.</p>
+
+      <div class="controls">
+        <a class="btn" href="#">View Applications (demo)</a>
+        <a class="btn secondary" href="admin.html">Logout</a>
+      </div>
+
+      <section style="margin-top:24px">
+        <h3>Admin Info</h3>
+        <p><strong>Email:</strong> alfalahonlinekerala@gmail.com</p>
+        <p><strong>Password (demo):</strong> 5885@alfalah</p>
+        <small>Note: Credentials are present in README for convenience — remove or secure them before publishing.</small>
+      </section>
+    </div>
+  </body>
+</html>

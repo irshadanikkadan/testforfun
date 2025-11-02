@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Admin Portal - AL FALAH ONLINE</title>
+			<link rel="stylesheet" href="css/styles.css">
+	</head>
+		<body class="admin-page">
+		<div class="admin-container">
+			<h1>🔐 Admin Portal</h1>
+			<form id="admin-login">
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" id="email" value="alfalahonlinekerala@gmail.com" readonly>
+				</div>
+
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" id="password" placeholder="Enter admin password" required>
+				</div>
+
+				<button type="submit">Login</button>
+				<p class="error" id="error-message">Invalid password. Please try again.</p>
+			</form>
+		</div>
+
+		<script>
+			document.getElementById('admin-login').addEventListener('submit', function(e) {
+				e.preventDefault();
+				const password = document.getElementById('password').value;
+				const errorMsg = document.getElementById('error-message');
+
+				if (password === '5885@alfalah') {
+					alert('✅ Login successful! Redirecting to dashboard...');
+					window.location.href = 'dashboard.html';
+				} else {
+					errorMsg.style.display = 'block';
+					document.getElementById('password').value = '';
+				}
+			});
+		</script>
+	</body>
+</html>
