@@ -21,17 +21,25 @@
 				</div>
 
 				<button type="submit">Login</button>
-				<p class="error" id="error-message">Invalid password. Please try again.</p>
+				<p class="error" id="error-message" style="display: none;">Invalid password. Please try again.</p>
 			</form>
 		</div>
 
 		<script>
-			document.getElementById('admin-login').addEventListener('submit', function(e) {
+			document.getElementById('admin-login').addEventListener('submit', async function(e) {
 				e.preventDefault();
 				const password = document.getElementById('password').value;
 				const errorMsg = document.getElementById('error-message');
 
-				if (password === '5885@alfalah') {
+				const response = await fetch('/login', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ password })
+				});
+
+				if (response.ok) {
 					alert('✅ Login successful! Redirecting to dashboard...');
 					window.location.href = 'dashboard.html';
 				} else {
